@@ -27,36 +27,106 @@
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
+  function mobileNavToogle() {
+    document.body.classList.toggle('mobile-nav-active');
+    mobileNavToggleBtn.classList.toggle('bi-list');
+    mobileNavToggleBtn.classList.toggle('bi-x');
+  }
+
   if (mobileNavToggleBtn) {
-    function mobileNavToogle() {
-      document.querySelector('body').classList.toggle('mobile-nav-active');
-      mobileNavToggleBtn.classList.toggle('bi-list');
-      mobileNavToggleBtn.classList.toggle('bi-x');
-    }
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        if (typeof mobileNavToogle === 'function') mobileNavToogle();
+  document.querySelectorAll('.navmenu .dropdown > a').forEach(dropdownLink => {
+    dropdownLink.addEventListener('click', function(e) {
+      if (window.innerWidth < 1200) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        const parentLi = this.closest('.dropdown');
+        const submenu = parentLi.querySelector(':scope > ul');
+
+        parentLi.classList.toggle('active');
+
+        if (submenu) {
+          submenu.classList.toggle('dropdown-active');
+        }
       }
     });
-
   });
+
+  document.querySelectorAll('#navmenu a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (window.innerWidth < 1200) {
+        const isDropdownParent = this.closest('.dropdown') && this.parentElement.classList.contains('dropdown');
+
+        if (isDropdownParent) {
+          return;
+        }
+
+        if (document.body.classList.contains('mobile-nav-active')) {
+          mobileNavToogle();
+        }
+      }
+    });
+  });
+
+  /**
+   * Navmenu Scrollspy
+   */
+  let navmenulinks = document.querySelectorAll('.navmenu a');
+
+  function navmenuScrollspy() {
+    navmenulinks.forEach(navmenulink => {
+      if (!navmenulink.hash) {
+        let path = window.location.pathname;
+        let page = path.split("/").pop();
+        if (page === "" && navmenulink.getAttribute('href') === "index.html") {
+          navmenulink.classList.add('active');
+        } else if (navmenulink.getAttribute('href') === page) {
+          navmenulink.classList.add('active');
+          // If in a dropdown, make the parent active too
+          let dropdown = navmenulink.closest('.dropdown');
+          if (dropdown) {
+            dropdown.querySelector('a').classList.add('active');
+          }
+        } else {
+          navmenulink.classList.remove('active');
+        }
+        return;
+      }
+      let section = document.querySelector(navmenulink.hash);
+      if (!section) return;
+      let position = window.scrollY + 200;
+      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+        navmenulink.classList.add('active');
+      } else {
+        navmenulink.classList.remove('active');
+      }
+    })
+  }
+  window.addEventListener('load', navmenuScrollspy);
+  document.addEventListener('scroll', navmenuScrollspy);
 
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
+  document.querySelectorAll('.navmenu .dropdown > a').forEach(dropdownLink => {
+    dropdownLink.addEventListener('click', function(e) {
+      if (window.innerWidth < 1200) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parentLi = this.closest('.dropdown');
+        const submenu = parentLi.querySelector(':scope > ul');
+
+        parentLi.classList.toggle('active');
+
+        if (submenu) {
+          submenu.classList.toggle('dropdown-active');
+        }
+      }
     });
   });
 
