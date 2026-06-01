@@ -14,8 +14,14 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --heading-font: "Inter", system-ui, -apple-system, sans-serif;
+      --default-font: "Inter", system-ui, -apple-system, sans-serif;
+      --nav-font: "Inter", system-ui, -apple-system, sans-serif;
+    }
+  </style>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +30,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css?v=3" rel="stylesheet">
+  <link href="assets/css/main.css?v=4" rel="stylesheet">
 </head>
 
 <body class="program-page">
@@ -59,7 +65,10 @@
           </ul>
         </li>
 
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>        <li class="mobile-donate-item d-xl-none mt-3">
+          <a href="donate.html" class="donate-nav-btn">Donate</a>
+        </li>
+
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
@@ -99,9 +108,8 @@
         <div class="row gy-4">
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
             <h2 class="section-title-premium">Restoring Dignity to <span class="text-accent">Couples Facing Infertility</span></h2>
-            <p class="fst-italic text-muted" style="font-size: 0.95rem; color: rgba(55, 65, 81, 0.75); margin: 1.5rem 0 1.5rem 0;">Named ‘Ishami ry’Urugo’ meaning ‘The Branch of the Family’ in Kinyarwanda, the initiative represents restoration, belonging, and the strengthening of family foundations.</p>
-            <p class="lead-text">“Ishami ry’Urugo” program contributes to supporting Rwandan couples facing infertility by offering medical, emotional, and social care.</p>
-            <p>The program helps reduce stigma and increase access to fertility screening, counseling, and Assisted Reproductive Technologies (ART). In partnership with Legacy ARC and other health centers, the program builds a safe space for families to heal and find hope.</p>
+            <p class="lead-text" style="font-size: 1.05rem;">Named ‘Ishami ry’Urugo’ meaning ‘The Branch of the Family’ in Kinyarwanda, the initiative represents restoration, belonging, and the strengthening of family foundations. “Ishami ry’Urugo” program contributes to supporting Rwandan couples facing infertility by offering medical, emotional, and social care.</p>
+            <p class="lead-text" style="font-size: 1.05rem;">The program helps reduce stigma and increase access to fertility screening, counseling, and Assisted Reproductive Technologies (ART). In partnership with Legacy ARC and other health centers, the program builds a safe space for families to heal and find hope.</p>
             
             <div class="mt-5">
               <h3>Key Objectives</h3>
@@ -304,4 +312,7 @@
 </body>
 
 </html>
+
+
+
 

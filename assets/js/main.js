@@ -110,27 +110,6 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
   /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .dropdown > a').forEach(dropdownLink => {
-    dropdownLink.addEventListener('click', function(e) {
-      if (window.innerWidth < 1200) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const parentLi = this.closest('.dropdown');
-        const submenu = parentLi.querySelector(':scope > ul');
-
-        parentLi.classList.toggle('active');
-
-        if (submenu) {
-          submenu.classList.toggle('dropdown-active');
-        }
-      }
-    });
-  });
-
-  /**
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
